@@ -17,5 +17,19 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#5e382e",
+          "secondary": "#e5ab85",
+          "accent": "#088081",
+          "neutral": "#ffffff",  // Ensuring a light theme background
+          "base-100": "#ffffff", // Background set to white to avoid dark mode
+        },
+      },
+    ],
+    darkTheme: false, // **This explicitly disables dark mode**
+  },
   plugins: [require("daisyui")], // if you're using DaisyUI
 };

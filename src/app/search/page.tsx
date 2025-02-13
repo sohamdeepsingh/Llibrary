@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export default function SearchPage() {
-  const [query, setQuery] = useState("");
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") || ""; // Get query from URL
+  const [query, setQuery] = useState(initialQuery);
   const [results, setResults] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -28,6 +31,13 @@ export default function SearchPage() {
     }
     setLoading(false);
   }
+
+  // Automatically trigger search when the page loads with a query
+  useEffect(() => {
+    if (initialQuery) {
+      handleSearch();
+    }
+  }, [initialQuery]);
 
   return (
     <div className="p-8">
