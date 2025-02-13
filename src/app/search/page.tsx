@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -20,7 +20,15 @@ function SearchComponent() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Automatically trigger search if there's an initial query from the URL
+  useEffect(() => {
+    if (initialQuery) {
+      handleSearch();
+    }
+  }, [initialQuery]);
+
   async function handleSearch() {
+    if (!query.trim()) return; // Prevent empty searches
     setLoading(true);
     setError(null);
 
