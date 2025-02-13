@@ -2,20 +2,189 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Custom Global Styles and Overrides */
+
+/* -- Base Body and Typography -- */
+body {
+  @apply font-sans text-base text-primary bg-secondary;
+  /* Ensure your fonts are loaded via a link to Google Fonts or local files */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-primary;
+}
+
+/* Paragraphs */
+p {
+  @apply text-primary leading-relaxed;
+}
+
+/* Links */
+a {
+  @apply text-accent underline transition-colors duration-300;
+}
+a:hover {
+  @apply text-primary;
+}
+
+/* -- Custom Color Variables (if you prefer CSS variables) -- */
+:root {
+  --color-primary: #5e382e;   /* Deep brown */
+  --color-secondary: #ffdcc6; /* Soft peachy-beige */
+  --color-accent: #f1787f;    /* Soft coral pink for accents */
+}
+
+/* Apply the custom colors in Tailwind classes or raw CSS as needed */
+body {
+  @apply font-sans text-base;
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+  color: var(--color-primary);
+}
+
+/* Paragraphs */
+p {
+  color: var(--color-primary);
+  @apply leading-relaxed;
+}
+
+/* Links */
+a {
+  color: var(--color-accent);
+  @apply underline transition-colors duration-300;
+}
+a:hover {
+  color: var(--color-primary);
+}
+
+/* -- Button Overrides using DaisyUI and Tailwind Utilities -- */
+
+/* Standard button styling */
+.btn {
+  @apply rounded-lg font-semibold transition-all ease-in-out duration-300;
+  /* For a solid accent button */
+  background-color: var(--color-accent);
+  color: white;
+  box-shadow: 0 4px 6px rgba(241, 120, 127, 0.3);
+}
+
+.btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  box-shadow: 0 6px 8px rgba(241, 120, 127, 0.4);
+}
+
+/* Outline button styling */
+.btn-outline {
+  @apply border-2 bg-transparent rounded-lg font-semibold;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.btn-outline:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* -- Input Fields -- */
+.input,
+.input-bordered {
+  @apply rounded-lg focus:ring focus:ring-[var(--color-accent)];
+  border-color: var(--color-accent);
+}
+
+/* -- Card Components -- */
+.card {
+  @apply rounded-lg shadow-md transition-all duration-300 bg-white;
+  border: 1px solid rgba(241, 120, 127, 0.2);
+}
+.card:hover {
+  box-shadow: 0 8px 12px rgba(241, 120, 127, 0.25);
+}
+.card-body {
+  @apply p-4;
+}
+
+/* Custom card class for our own use */
+.custom-card {
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.custom-card:hover {
+  transform: translateY(-2px);
+}
+
+/* -- Navbar Overrides -- */
+.navbar {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  @apply shadow-md;
+}
+.navbar a {
+  @apply transition-colors duration-300;
+  color: var(--color-secondary);
+}
+.navbar a:hover {
+  color: var(--color-accent);
+}
+
+/* -- Footer -- */
+footer {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  @apply p-4 text-center text-sm;
+}
+
+/* -- Container & Spacing -- */
+.container {
+  @apply mx-auto px-4;
+}
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+
+/* -- Soft Shadows and Transitions -- */
+.shadow-soft {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* -- Animations -- */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* -- Responsive Tweaks -- */
+@media (max-width: 640px) {
+  .card {
+    @apply p-2;
+  }
+  .btn {
+    @apply px-3 py-1;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Additional custom styles for a polished look */
+a.btn-custom {
+  @apply border-2 rounded-lg px-4 py-2 transition-all duration-300;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+a.btn-custom:hover {
+  background-color: var(--color-accent);
+  color: white;
 }
